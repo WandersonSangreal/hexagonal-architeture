@@ -2,8 +2,9 @@ package application
 
 import (
 	"errors"
-	uuid "github.com/satori/go.uuid"
+
 	"github.com/asaskevich/govalidator"
+	uuid "github.com/satori/go.uuid"
 )
 
 func init() {
@@ -46,15 +47,15 @@ const (
 )
 
 type Product struct {
-	ID     string `valid:"uuidv4"`
-	Name   string `valid:"required"`
+	ID     string  `valid:"uuidv4"`
+	Name   string  `valid:"required"`
 	Price  float64 `valid:"float,optional"`
-	Status string `valid:"required"`
+	Status string  `valid:"required"`
 }
 
 func NewProduct() *Product {
 	product := Product{
-		ID: uuid.NewV4().String(),
+		ID:     uuid.NewV4().String(),
 		Status: DISABLED,
 	}
 	return &product
@@ -99,7 +100,7 @@ func (p *Product) Disable() error {
 	return errors.New("the price must be zero in order to have the product disabled")
 }
 
-func (p *Product) GetId() string {
+func (p *Product) GetID() string {
 	return p.ID
 }
 
